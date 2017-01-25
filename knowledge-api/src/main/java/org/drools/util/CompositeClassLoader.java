@@ -83,7 +83,7 @@ public class CompositeClassLoader extends ClassLoader {
      * This ClassLoader never has classes of it's own, so only search the child ClassLoaders
      * and the parent ClassLoader if one is provided
      */
-    public Class< ? > loadClass(final String name,
+    public synchronized Class< ? > loadClass(final String name,
                                 final boolean resolve) throws ClassNotFoundException {
         Class cls = loader.get().load( this,
                                        name,
@@ -99,7 +99,7 @@ public class CompositeClassLoader extends ClassLoader {
     * This ClassLoader never has classes of it's own, so only search the child ClassLoaders
     * and the parent ClassLoader if one is provided
     */
-   public Class< ? > loadClass(final String name,
+   public synchronized Class< ? > loadClass(final String name,
                                final boolean resolve,
                                final ClassLoader ignore) throws ClassNotFoundException {
        Class cls = loader.get().load( this,
@@ -181,13 +181,13 @@ public class CompositeClassLoader extends ClassLoader {
         private DefaultLoader() {
         }
 
-        public Class< ? > load(final CompositeClassLoader cl,
+        public synchronized Class< ? > load(final CompositeClassLoader cl,
                                final String name,
                                final boolean resolve) {
             return load(cl, name, resolve, null);
         }
 
-        public Class< ? > load(CompositeClassLoader cl,
+        public synchronized Class< ? > load(CompositeClassLoader cl,
                                String name,
                                boolean resolve,
                                ClassLoader ignore) {
@@ -231,13 +231,13 @@ public class CompositeClassLoader extends ClassLoader {
         public long                       failedCalls          = 0;
         public long                       cacheHits            = 0;
 
-        public Class< ? > load(final CompositeClassLoader cl,
+        public synchronized Class< ? > load(final CompositeClassLoader cl,
                                final String name,
                                final boolean resolve) {
             return load(cl, name, resolve, null);
         }
 
-        public Class< ? > load(CompositeClassLoader cl,
+        public synchronized Class< ? > load(CompositeClassLoader cl,
                                String name,
                                boolean resolve,
                                ClassLoader ignore) {

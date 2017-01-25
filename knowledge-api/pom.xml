@@ -10,6 +10,7 @@
   </parent>
 
   <artifactId>knowledge-api</artifactId>
+  <version>5.5.0.Final.Patched</version>
 
   <name>Knowledge API</name>
   <description>The Drools and jBPM public API which is backwards compatible between releases.</description>
